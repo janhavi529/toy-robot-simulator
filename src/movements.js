@@ -1,5 +1,9 @@
+const chalk = require('chalk');
+
 /**
 * Place robot at the specified X,Y coordinates on the tabletop and facing in the specified direction.
+* 
+* @param {string} command Command entered by the user.
 */
 const placeRobot = (command) => {
     return command.trim().split(' ')[1].split(',');
@@ -7,6 +11,10 @@ const placeRobot = (command) => {
 
 /**
 * Move the robot one position in the current direction.
+* 
+* @param {int} x X-coordinate position of the robot.
+* @param {int} y Y-coordinate position of the robot.
+* @param {string} direction Direction in which the robot is facing.
 */
 const moveForward = (x, y, direction) => {
     let coordinates = [x, y];
@@ -34,16 +42,19 @@ const moveForward = (x, y, direction) => {
 
 /**
 * Turn 90 degrees clockwise or anticlockwise based on the command provided.
+* 
+* @param {string} command Command entered by the user.
+* @param {string} direction Direction in which the robot is facing.
 */
 const changeDirection = (command, direction) => {
     const directions = ['NORTH', 'EAST', 'SOUTH', 'WEST'];
     let directionIndex = directions.indexOf(direction);
 
     if ( command === 'RIGHT') {
-        // Turn 90 degrees clockwise
+        // Turn 90 degrees clockwise/right
         directionIndex = (directionIndex === 3) ? 0 : ++directionIndex;
     } else {
-        // Turn 90 degrees anticlockwise
+        // Turn 90 degrees anticlockwise/left
         directionIndex = (directionIndex === 0) ? 3 : --directionIndex;
     }
     
@@ -52,9 +63,13 @@ const changeDirection = (command, direction) => {
 
 /**
 * Report the current location of the robot.
+* 
+* @param {int} x X-coordinate position of the robot.
+* @param {int} y Y-coordinate position of the robot.
+* @param {string} direction Direction in which the robot is facing.
 */
 const reportLocation = (x, y, direction) => {
-   console.log("LOCATION: ", x,y,direction); // TODO
+    console.log(chalk.blue('\nCurrent location of the robot is: ', x.toString().concat(',',y,',',direction,'\n')));
 }
 
 module.exports = { placeRobot, moveForward, changeDirection, reportLocation };

@@ -1,8 +1,13 @@
 const readline = require('readline');
+const chalk = require('chalk');
 
 const simulation = require('./src/simulation');
 const movements = require('./src/movements');
 
+/**
+* Function to simulate toy robot movement.
+*
+*/
 const simulateRobotMovement = () => {  
     let isPlaced = false, x, y, direction;
 
@@ -11,7 +16,10 @@ const simulateRobotMovement = () => {
         output: process.stdout
     });
 
-  //  console.log('ENTER COMMANDS TO MOVE THE ROBOT...');
+    console.log(chalk.blue.bold('\nTOY ROBOT SIMULATOR\n'));
+    console.log(chalk.magenta('Enter commands in the following format to move your robot on the tabletop:\n\nPLACE 1,2,NORTH\nMOVE\nLEFT\nRIGHT\nREPORT\n'));
+    console.log(chalk.blue('\nNOTE: You must first place your robot on the tabletop using a valid PLACE command.\n'));
+    console.log(chalk.green('\nEnter commands below:\n'));
 
     // Read commands from standard input
     rl.on('line', (command) => {
