@@ -1,7 +1,7 @@
 /**
 * Place robot at the specified X,Y coordinates on the tabletop and facing in the specified direction.
 */
-const placeRobot = (command, x, y, direction) => {
+const placeRobot = (command) => {
     return command.trim().split(' ')[1].split(',');
 }
 
@@ -54,7 +54,7 @@ const changeDirection = (command, direction) => {
 * Report the current location of the robot.
 */
 const reportLocation = (x, y, direction) => {
-   console.log("NEW LOCATION: ", x,y,direction); // TODO
+   console.log("LOCATION: ", x,y,direction); // TODO
 }
 
 module.exports = { placeRobot, moveForward, changeDirection, reportLocation };
