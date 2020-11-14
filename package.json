@@ -1,0 +1,39 @@
+{
+  "name": "toy-robot-simulator",
+  "version": "1.0.0",
+  "description": "Toy Robot Simulator",
+  "main": "server.js",
+  "devDependencies": {
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.6",
+    "supertest": "^6.0.1"
+  },
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "jest --watchAll --verbose --coverage"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "app.js"
+    ],
+    "watchPathIgnorePatterns": [
+      "index.js"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/janhavi529/toy-robot-simulator.git"
+  },
+  "author": "Janhavi Toshkhani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/janhavi529/toy-robot-simulator/issues"
+  },
+  "homepage": "https://github.com/janhavi529/toy-robot-simulator#readme",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "express": "^4.17.1"
+  }
+}
