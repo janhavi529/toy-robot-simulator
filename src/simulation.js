@@ -27,10 +27,10 @@ const simulateRobotMovement = (cmd) => {
             direction = newDirection;
             simulationResponse = { status: 200, response: { message: 'Command successfully executed.'} };
         }
-    } else if(!isPlaced) {
+    } else if (!isPlaced) {
         simulationResponse = { status: 400, response: { message: 'You must first place the robot on the tabletop using a valid PLACE command e.g. PLACE 2,3,EAST'} };
     } else {
-        simulationResponse = { status: 200, response: { message: 'Please enter a valid command. e.g. PLACE 1,2,NORTH | MOVE | LEFT | RIGHT | REPORT'} };
+        simulationResponse = { status: 400, response: { message: 'Please enter a valid command. e.g. PLACE 1,2,NORTH | MOVE | LEFT | RIGHT | REPORT'} };
     }
 
     return simulationResponse;

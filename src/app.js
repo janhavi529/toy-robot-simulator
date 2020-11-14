@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const simulation = require('./src/simulation');
+const simulation = require('./simulation');
 
 const app = express();
 
@@ -43,7 +43,7 @@ app.get('/health', (req, res) => {
 * Middleware to handle errors.
 */
 app.use((req, res) => {
-    res.status(400).send({ message: 'Bad Request' });
+    res.status(404).send({ message: 'Command not found' });
 });
 
 module.exports = app;
