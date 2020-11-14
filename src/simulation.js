@@ -12,11 +12,10 @@ const simulateRobotMovement = (cmd) => {
     let simulationResponse = {};
 
     if (!isPlaced) {
-        console.log("IF");
-        simulationResponse = { status: 400, response: { message: 'You must first place the robot on the tabletop using a valid PLACE command e.g. PLACE 2,3,EAST'} };
         isPlaced = checkIfRobotIsPlaced(isPlaced, command);
-    } else if (isPlaced && checkCommandValidity(command)) {
-        console.log("ELSE IF");
+    } 
+    
+    if (isPlaced && checkCommandValidity(command)) {
         // Allow robot movement only after it is placed on the tabletop and if the command is valid.
         if (command === 'REPORT') {
             simulationResponse = { status: 200, response: { message: `Current location of the robot is: ${x}, ${y}, ${direction}`} };
@@ -28,8 +27,9 @@ const simulateRobotMovement = (cmd) => {
             direction = newDirection;
             simulationResponse = { status: 200, response: { message: 'Command successfully executed.'} };
         }
+    } else if(!isPlaced) {
+        simulationResponse = { status: 400, response: { message: 'You must first place the robot on the tabletop using a valid PLACE command e.g. PLACE 2,3,EAST'} };
     } else {
-        console.log("ELSE");
         simulationResponse = { status: 200, response: { message: 'Please enter a valid command. e.g. PLACE 1,2,NORTH | MOVE | LEFT | RIGHT | REPORT'} };
     }
 
