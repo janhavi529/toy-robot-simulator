@@ -1,5 +1,40 @@
 const movements = require('./movements');
-const chalk = require('chalk');
+
+let isPlaced = false, x, y, direction;
+
+/**
+* Function to simulate toy robot movement.
+*
+* @param {string} cmd Command entered by the user.
+*/
+const simulateRobotMovement = (cmd) => {
+    let command = cmd.trim().toUpperCase();
+    let simulationResponse = {};
+
+    if (!isPlaced) {
+        console.log("IF");
+        simulationResponse = { status: 400, response: { message: 'You must first place the robot on the tabletop using a valid PLACE command e.g. PLACE 2,3,EAST'} };
+        isPlaced = checkIfRobotIsPlaced(isPlaced, command);
+    } else if (isPlaced && checkCommandValidity(command)) {
+        console.log("ELSE IF");
+        // Allow robot movement only after it is placed on the tabletop and if the command is valid.
+        if (command === 'REPORT') {
+            simulationResponse = { status: 200, response: { message: `Current location of the robot is: ${x}, ${y}, ${direction}`} };
+        } else {
+            const { coordinates: newCoordinates, direction: newDirection} = moveRobot(command, x, y, direction);
+            
+            x = newCoordinates[0];
+            y = newCoordinates[1];
+            direction = newDirection;
+            simulationResponse = { status: 200, response: { message: 'Command successfully executed.'} };
+        }
+    } else {
+        console.log("ELSE");
+        simulationResponse = { status: 200, response: { message: 'Please enter a valid command. e.g. PLACE 1,2,NORTH | MOVE | LEFT | RIGHT | REPORT'} };
+    }
+
+    return simulationResponse;
+}; 
 
 /**
 * Function to check whether the toy robot has been placed on the board.
@@ -9,15 +44,7 @@ const chalk = require('chalk');
 */
 const checkIfRobotIsPlaced = (isPlaced, command) => {
     // Only PLACE is allowed as the first command (Also checking if placement coordinates are on the tabletop).
-    const isValidFirstCommand = isPlaced || /PLACE\s[0-4],[0-4],(NORTH|SOUTH|EAST|WEST).*$/.test(command);
-
-    if (!isValidFirstCommand) {
-        console.log(chalk.red('\nYou must first place the robot on the tabletop using valid PLACE command e.g. PLACE 2,3,EAST\n'));
-    } else {
-        console.log(chalk.green('\nThe robot has been placed on the tabletop. You may now move the robot.\n'));
-    }
-
-    return isValidFirstCommand;
+    return isPlaced || /PLACE\s[0-4],[0-4],(NORTH|SOUTH|EAST|WEST).*$/.test(command);
 }
 
 /**
@@ -27,13 +54,7 @@ const checkIfRobotIsPlaced = (isPlaced, command) => {
 */
 const checkCommandValidity = (command) => {
     // Valid command formats: PLACE X,Y,DIRECTION; MOVE; LEFT; RIGHT; REPORT.
-    const isValidCommand = /PLACE\s[0-4],[0-4],[NORTH|SOUTH|EAST|WEST]|MOVE|LEFT|RIGHT|REPORT/.test(command);
-
-    if (!isValidCommand) {
-        console.log(chalk.red('\nPlease enter a valid command. e.g. PLACE 1,2,NORTH | MOVE | LEFT | RIGHT | REPORT\n'));
-    } 
-
-    return isValidCommand; 
+    return /PLACE\s[0-4],[0-4],(NORTH|SOUTH|EAST|WEST)|MOVE|LEFT|RIGHT|REPORT/.test(command); 
 }
 
 /**
@@ -68,12 +89,9 @@ const moveRobot = (command, x, y, direction) => {
         case 'RIGHT': 
             currentPosition.direction = movements.changeDirection(command, direction);
             break;
-        case 'REPORT': 
-            movements.reportLocation(x, y, direction);
-            break;
     }
 
     return currentPosition;
 }
 
-module.exports = { checkIfRobotIsPlaced, checkCommandValidity, moveRobot };
+module.exports = { simulateRobotMovement, checkIfRobotIsPlaced, checkCommandValidity, moveRobot };

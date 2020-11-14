@@ -11,7 +11,7 @@ describe('Simulation of robot according to commands entered', () => {
     });
 
     describe('Initial placing of robot on tabletop', () => {
-        it('Should place the robot on tabletop if valid PLACE command is entered', () => {
+       it('Should place the robot on tabletop if valid PLACE command is entered', () => {
             const validPlaceCommands = ['PLACE 1,4,SOUTH', 'PLACE 1,2,EAST', 'PLACE 3,4,WEST', 'PLACE 0,4,NORTH'];
 
             validPlaceCommands.forEach((command) => expect(simulation.checkIfRobotIsPlaced(false, command)).toBeTruthy());
@@ -19,7 +19,7 @@ describe('Simulation of robot according to commands entered', () => {
     
         it('Should not place the robot on tabletop if command other than PLACE is the first command', () => {
             const invalidCommands = ['MOVE', 'LEFT', 'RIGHT', 'REPORT', 'TURN', 'RUN'];
-            
+
             invalidCommands.forEach((command) => expect(simulation.checkIfRobotIsPlaced(false, command)).toBeFalsy());
         });
     });
@@ -49,14 +49,6 @@ describe('Simulation of robot according to commands entered', () => {
     
             simulation.moveRobot('RIGHT', 1, 3, 'WEST');
             expect(directionMock).toHaveBeenCalledWith('RIGHT', 'WEST');
-        });
-        
-        it('Should call the reportLocation function to report the robot\'s direction when valid REPORT command is entered', () => {
-            const reportMock = jest.spyOn(movements, "reportLocation");
-    
-            simulation.moveRobot('REPORT', 2, 3, 'WEST');
-    
-            expect(reportMock).toHaveBeenCalledWith(2, 3, 'WEST');
         });
     });
   });

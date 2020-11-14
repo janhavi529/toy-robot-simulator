@@ -1,5 +1,3 @@
-const chalk = require('chalk');
-
 /**
 * Place robot at the specified X,Y coordinates on the tabletop and facing in the specified direction.
 * 
@@ -61,15 +59,4 @@ const changeDirection = (command, direction) => {
     return directions[directionIndex];
 }
 
-/**
-* Report the current location of the robot.
-* 
-* @param {int} x X-coordinate position of the robot.
-* @param {int} y Y-coordinate position of the robot.
-* @param {string} direction Direction in which the robot is facing.
-*/
-const reportLocation = (x, y, direction) => {
-    console.log(chalk.blue('\nCurrent location of the robot is: ', x.toString().concat(',',y,',',direction,'\n')));
-}
-
-module.exports = { placeRobot, moveForward, changeDirection, reportLocation };
+module.exports = { placeRobot, moveForward, changeDirection };
