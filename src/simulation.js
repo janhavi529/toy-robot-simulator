@@ -1,4 +1,15 @@
+// const path = require('path');
+// const winston = require('winston'); 
 const movements = require('./movements');
+
+// const logger = winston.createLogger({   // Create log files
+//     level: 'info',
+//     format: winston.format.json(),
+//     transports: [
+//       new winston.transports.File({ filename: path.join(__dirname, 'error.log'), level: 'error' }),
+//       new winston.transports.File({ filename: path.join(__dirname, 'combined.log') }),
+//     ],
+// });
 
 let isPlaced = false, x, y, direction;
 
@@ -19,18 +30,35 @@ const simulateRobotMovement = (cmd) => {
         // Allow robot movement only after it is placed on the tabletop and if the command is valid.
         if (command === 'REPORT') {
             simulationResponse = { status: 200, response: { message: `Current location of the robot is: ${x}, ${y}, ${direction}`} };
+            // logger.log({
+            //     level: 'info',
+            //     message: `Current location of the robot is: ${x}, ${y}, ${direction}`
+            // });
         } else {
             const { coordinates: newCoordinates, direction: newDirection} = moveRobot(command, x, y, direction);
             
             x = newCoordinates[0];
             y = newCoordinates[1];
             direction = newDirection;
+
             simulationResponse = { status: 200, response: { message: 'Command successfully executed.'} };
+            // logger.log({
+            //     level: 'info',
+            //     message: 'Command successfully executed.'
+            // });
         }
     } else if (!isPlaced) {
         simulationResponse = { status: 400, response: { message: 'You must first place the robot on the tabletop using a valid PLACE command e.g. PLACE 2,3,EAST'} };
+        // logger.log({
+        //     level: 'error',
+        //     message: 'Robot has not been placed on tabletop.'
+        // });
     } else {
         simulationResponse = { status: 400, response: { message: 'Please enter a valid command. e.g. PLACE 1,2,NORTH | MOVE | LEFT | RIGHT | REPORT'} };
+        // logger.log({
+        //     level: 'error',
+        //     message: 'Invalid command entered.'
+        // });
     }
 
     return simulationResponse;

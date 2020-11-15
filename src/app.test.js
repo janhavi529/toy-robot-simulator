@@ -1,5 +1,5 @@
 const request = require("supertest");
-const app = require("../src/app");
+const app = require("./app");
 
 describe("App", () => {
     it("Should not place the robot on the tabletop until a valid PLACE command is entered", async () => {

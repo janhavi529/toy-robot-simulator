@@ -1,4 +1,4 @@
-const movements = require('../src/movements');
+const movements = require('./movements');
 
 describe('Movements of robot according to the command supplied', () => {
     it('Should place the robot at specified coordinates and direction when valid PLACE command is entered', () => {

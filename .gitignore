@@ -2,4 +2,11 @@
 coverage
 
 # Dependency directories
-node_modules/
+node_modules
+
+#Production
+dist
+
+# Logs
+logs
+*.log
