@@ -42,11 +42,19 @@ Implementation
 -----------
  - Used Node/Express to create REST API to handle command requests for robot simulation.
  - Used Jest for test cases.
+ - Test coverage report can be obtained by running "npm test".
 
  Usage
 -----------
- - The code is deployed on Heroku at: 
+ - The API code is deployed on Heroku at: https://stormy-plains-80695.herokuapp.com/
  - Request commands must be in the following form (can be fired from Postman):
+ 
+    https://stormy-plains-80695.herokuapp.com/place (Send request body)
+    https://stormy-plains-80695.herokuapp.com/move
+    https://stormy-plains-80695.herokuapp.com/left
+    https://stormy-plains-80695.herokuapp.com/right
+    https://stormy-plains-80695.herokuapp.com/report
+    https://stormy-plains-80695.herokuapp.com/health
  
     1. /place - POST request with request body containing xCoordinate, yCoordinate, direction. 
              e.g. {
@@ -54,9 +62,10 @@ Implementation
                 "yCoordinate": 4,
                 "direction": "EAST"
             } 
-    2. /move - GET request
-    3. /left - GET request
-    4. /right - GET request
-    5. /report - GET request
+    2. /move - GET request - Move robot one position in the direction it is currently facing.
+    3. /left - GET request - Rotate robot 90 degress anti-clockwise
+    4. /right - GET request - Rotate robot 90 degress clockwise
+    5. /report - GET request - Get current position of robot
+    6. /health - GET request - Get health status of robot
 
 
