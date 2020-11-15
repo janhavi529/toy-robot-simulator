@@ -42,7 +42,7 @@ Implementation
 -----------
  - Used Node/Express to create REST API to handle command requests for robot simulation.
  - Used Jest for test cases.
- - Test coverage report can be obatined by running "npm test". 
+ - Test coverage report can be obtained by running "npm test". 
  
  Usage
 -----------
