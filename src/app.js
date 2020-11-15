@@ -1,10 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const compression = require('compression');   
+const helmet = require('helmet');   
+
 const simulation = require('./simulation');
 
 const app = express();
 
-app.use(bodyParser.json({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));      
+app.use(compression()); // To compress HTTP responses back to the client, improve load time
+app.use(helmet());  // To protect the app against vulnerabilities
 
 /**
 * To handle GET traffic for MOVE, LEFT, RIGHT, REPORT commands.
