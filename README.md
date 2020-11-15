@@ -45,4 +45,18 @@ Implementation
 
  Usage
 -----------
+ - The code is deployed on Heroku at: 
+ - Request commands must be in the following form (can be fired from Postman):
  
+    1. /place - POST request with request body containing xCoordinate, yCoordinate, direction. 
+             e.g. {
+                "xCoordinate": 2,
+                "yCoordinate": 4,
+                "direction": "EAST"
+            } 
+    2. /move - GET request
+    3. /left - GET request
+    4. /right - GET request
+    5. /report - GET request
+
+
