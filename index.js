@@ -2,11 +2,9 @@ const readline = require('readline');
 const chalk = require('chalk');
 
 const simulation = require('./src/simulation');
-const movements = require('./src/movements');
 
 /**
 * Function to simulate toy robot movement.
-*
 */
 const simulateRobotMovement = () => {  
     let isPlaced = false, x, y, direction;

@@ -1,6 +1,6 @@
 # toy-robot-simulator
 
-Description
+Problem Statement
 -----------
  
 - The application is a simulation of a toy robot moving on a square tabletop,
@@ -35,10 +35,26 @@ The application can read in commands of the following form:
  
 - A robot that is not on the table can choose to ignore the MOVE, LEFT, RIGHT
   and REPORT commands.
- 
-Constraints
------------
- 
 - The toy robot must not fall off the table during movement. This also
   includes the initial placement of the toy robot.
 - Any move that would cause the robot to fall must be ignored.
+ 
+Implementation
+-----------
+ 
+- Used Node to handle command requests for robot simulation through standard input.
+- Used Jest for test cases. Test coverage report can be obtained by running "npm test".
+
+Usage
+-----------
+ 
+- Use the standard input/command line to enter commands for robot simulation.
+ 
+The application can read in commands of the following form:
+ 
+    PLACE 1,2,NORTH
+    MOVE
+    LEFT
+    RIGHT
+    REPORT
+ 
