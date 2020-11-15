@@ -51,4 +51,4 @@ describe('Simulation of robot according to commands entered', () => {
             expect(directionMock).toHaveBeenCalledWith('RIGHT', 'WEST');
         });
     });
-  });
+});
