@@ -61,4 +61,3 @@ Implementation
     5. https://stormy-plains-80695.herokuapp.com/report - GET request - Get current position of robot
     6. https://stormy-plains-80695.herokuapp.com/health - GET request - Get health status of robot
 
-
