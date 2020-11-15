@@ -1,6 +1,6 @@
 # toy-robot-simulator
 
-Description
+Problem Statement
 -----------
  
 - The application is a simulation of a toy robot moving on a square tabletop,
@@ -32,13 +32,31 @@ The application can read in commands of the following form:
   without changing the position of the robot.
 - REPORT will announce the X,Y and F of the robot. This can be in any form,
   but standard output is sufficient.
- 
 - A robot that is not on the table can choose to ignore the MOVE, LEFT, RIGHT
   and REPORT commands.
- 
-Constraints
------------
- 
 - The toy robot must not fall off the table during movement. This also
   includes the initial placement of the toy robot.
 - Any move that would cause the robot to fall must be ignored.
+ 
+Implementation
+-----------
+ - Used Node/Express to create REST API to handle command requests for robot simulation.
+ - Used Jest for test cases.
+
+ Usage
+-----------
+ - The code is deployed on Heroku at: 
+ - Request commands must be in the following form (can be fired from Postman):
+ 
+    1. /place - POST request with request body containing xCoordinate, yCoordinate, direction. 
+             e.g. {
+                "xCoordinate": 2,
+                "yCoordinate": 4,
+                "direction": "EAST"
+            } 
+    2. /move - GET request
+    3. /left - GET request
+    4. /right - GET request
+    5. /report - GET request
+
+

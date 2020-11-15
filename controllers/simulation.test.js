@@ -1,5 +1,5 @@
-const simulation = require('../src/simulation');
-const movements = require('../src/movements');
+const simulation = require('./simulation');
+const movements = require('./movements');
 
 describe('Simulation of robot according to commands entered', () => {
     it('Should return validity of the command entered', () => {
@@ -51,4 +51,4 @@ describe('Simulation of robot according to commands entered', () => {
             expect(directionMock).toHaveBeenCalledWith('RIGHT', 'WEST');
         });
     });
-  });
+});
