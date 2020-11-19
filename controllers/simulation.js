@@ -77,7 +77,7 @@ const moveRobot = (command, x, y, direction) => {
         direction
     };
     
-    const commandName = /PLACE\s[0-4],[0-4],[NORTH|SOUTH|EAST|WEST]/.test(command) ? 'PLACE' : command;
+    const commandName = /PLACE\s[0-4],[0-4],(NORTH|SOUTH|EAST|WEST)/.test(command) ? 'PLACE' : command;
 
     switch (commandName) {
         case 'PLACE':
