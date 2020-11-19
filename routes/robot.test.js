@@ -3,7 +3,7 @@ const app = require('../server');
 
 describe('Toy Robot Simulator', () => {
     it('Should not place the robot on the tabletop until a valid PLACE command is entered', async () => {
-        const response = await request(app).get('/move');
+        const response = await request(app).post('/move');
 
         expect(response.statusCode).toBe(400);
         expect(response.body).toEqual({
@@ -40,7 +40,7 @@ describe('Toy Robot Simulator', () => {
     });
 
     it('Should MOVE robot once it is placed on tabletop', async () => {
-        const response = await request(app).get('/move');
+        const response = await request(app).post('/move');
 
         expect(response.statusCode).toBe(200);
         expect(response.body).toEqual({
@@ -50,7 +50,7 @@ describe('Toy Robot Simulator', () => {
     });
  
     it('Should rotate robot to the LEFT or RIGHT', async () => {
-        const response = await request(app).get('/left');
+        const response = await request(app).post('/left');
 
         expect(response.statusCode).toBe(200);
         expect(response.body).toEqual({
@@ -72,7 +72,7 @@ describe('Toy Robot Simulator', () => {
     });
 
     it('Should throw error if invalid command is entered', async () => {
-        const response = await request(app).get('/run');
+        const response = await request(app).post('/run');
 
         expect(response.statusCode).toBe(404);
         expect(response.body).toEqual({

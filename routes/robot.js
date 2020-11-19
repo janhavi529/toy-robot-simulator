@@ -4,9 +4,19 @@ const simulation = require('../controllers/simulation');
 const router = express.Router();
 
 /**
-* To handle GET traffic for MOVE, LEFT, RIGHT, REPORT commands.
+* To handle GET traffic for REPORT command.
 */
-router.get(['/move','/left','/right','/report'], (req, res) => {
+router.get(['/report'], (req, res) => {
+    let cmd = req.url.slice(1);    // Extracting only the command name (Removing '/')
+    let { status, response } = simulation.simulateRobotMovement(cmd);
+
+    res.status(status).send(response);
+});
+
+/**
+* To handle POST traffic for MOVE, LEFT, RIGHT commands.
+*/
+router.post(['/move','/left','/right'], (req, res) => {
     let cmd = req.url.slice(1);    // Extracting only the command name (Removing '/')
     let { status, response } = simulation.simulateRobotMovement(cmd);
 
